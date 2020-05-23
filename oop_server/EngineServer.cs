@@ -36,10 +36,10 @@ namespace oop_server
 
                     SetupSettings setup = ((request.data) as JObject)?.ToObject<SetupSettings>();
                     _engine = new Engine(setup?.engine, setup?.entity);
-                    _engine.OnEntityChanged += EngineOnOnEntityChanged;
-                    _engine.OnStatusChanged += EngineOnOnStatusChanged;
-                    _engine.OnHourTick += EngineOnOnHourTick;
-                    _engine.OnNewDay += EngineOnOnNewDay;
+                    _engine.OnEntityChanged += EngineOnEntityChanged;
+                    _engine.OnStatusChanged += EngineOnStatusChanged;
+                    _engine.OnHourTick += EngineOnHourTick;
+                    _engine.OnNewDay += EngineOnNewDay;
 
                     response.data = _engine.GetEntities();
                     goto send_rsp;
@@ -85,7 +85,7 @@ namespace oop_server
             }
         }
 
-        private void EngineOnOnNewDay(int totaldays)
+        private void EngineOnNewDay(int totaldays)
         {
             if (_disconnected)
                 return;
@@ -100,7 +100,7 @@ namespace oop_server
             Send(JsonConvert.SerializeObject(response));
         }
 
-        private void EngineOnOnHourTick(int currenthour)
+        private void EngineOnHourTick(int currenthour)
         {
             if(_disconnected)
                 return;
@@ -115,7 +115,7 @@ namespace oop_server
             Send(JsonConvert.SerializeObject(response));
         }
 
-        private void EngineOnOnStatusChanged(bool enginestatus)
+        private void EngineOnStatusChanged(bool enginestatus)
         {
             if (_disconnected)
                 return;
@@ -130,7 +130,7 @@ namespace oop_server
             Send(JsonConvert.SerializeObject(response));
         }
 
-        private void EngineOnOnEntityChanged(int entityid, EntityStatus status)
+        private void EngineOnEntityChanged(int entityid, EntityStatus status)
         {
             if (_disconnected)
                 return;

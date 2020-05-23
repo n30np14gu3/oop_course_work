@@ -30,17 +30,40 @@ namespace oop_sdk
         public delegate void NewDayCallback(int totalDays);
         public delegate void HourTickCallback(int currentHour);
 
+        /// <summary>
+        /// Событие вызывается, когда происходит смена статуса предприятия (включено / выключено)
+        /// </summary>
         public event EngineCallback OnStatusChanged;
 
+        /// <summary>
+        /// Событие вызывается, когда происходит смена статуса ТУ
+        /// </summary>
         public event EntityCallback OnEntityChanged;
 
+        /// <summary>
+        /// Событие вызывается, когда проходит день
+        /// </summary>
         public event NewDayCallback OnNewDay;
+
+        /// <summary>
+        /// Событие вызывается, когда прошел час
+        /// </summary>
         public event HourTickCallback OnHourTick;
 
+        /// <summary>
+        /// Свойство, которое хранит общее кол-во дней с момента запуска программы
+        /// </summary>
         public int TotalDays { get; private set; }
 
+        /// <summary>
+        /// Свойство, которое хранит текущий час симуляции
+        /// </summary>
         public int CurrentHour { get; private set; }
 
+
+        /// <summary>
+        /// Свойство, которое хранит текущий статус предприятия
+        /// </summary>
         public bool EngineStatus { get; private set; }
 
         /// <summary>
@@ -137,7 +160,7 @@ namespace oop_sdk
                                 tryFix();
                             }
 
-                            each_cont: ;
+                            each_cont:
 
                             //Вложенный метод, для попытки отправить ТУ на починку
                             void tryFix()
